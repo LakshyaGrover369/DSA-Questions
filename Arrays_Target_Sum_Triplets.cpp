@@ -32,6 +32,9 @@ void targetSumTriplet(int *arr, int n, int target)
         }
     }
 }
+
+/// fix one element and it becomes the target sum pair problem
+
 int main() {
 	int n;
 	cin>>n;
