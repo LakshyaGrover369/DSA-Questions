@@ -1,20 +1,34 @@
 #include<iostream>
+#include<algorithm>
 using namespace std;
+
 void targetSumTriplet(int *arr, int n, int target)
 {
-    int left,right,mid;
+    sort(arr,arr+n);
     for (int i = 0; i < n; i++)
-    {
-        left=i;right=n-1;
+    {   
+        if(3*arr[i]>target)    break;
+
+		int left,right;
+		int newTarget=target-arr[i];
+		left=i+1;right=n-1;
+
         while (left < right)
         {
-            mid=(left+right)/2;
-            if((arr[right]+arr[mid]+arr[left])==target){
-                
-                cout<<min(arr[left],arr[mid],arr[right])<<" "<<arr[mid]<<" and "<<min(arr[left],arr[mid],arr[right])<<endl;
-                
+            if((arr[left]+arr[right])>newTarget){
+                right--;
             }
-            right--;
+            else if((arr[left]+arr[right])<newTarget){
+                left++;
+            }
+            if((arr[right]+arr[left])==newTarget){
+                if(arr[right]>arr[left])
+                cout<<arr[i]<<", "<<arr[left]<<" and "<<arr[right]<<endl;
+                if(arr[right]<arr[left])
+                cout<<arr[i]<<", "<<arr[right]<<" and "<<arr[left]<<endl;
+				right--;
+				left++;
+            } 
         }
     }
 }
