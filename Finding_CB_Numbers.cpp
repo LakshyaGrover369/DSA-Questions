@@ -3,8 +3,8 @@
 #include<string>
 using namespace std;
 bool isPrime(string s){
-    int n,i=1,count=0;
-    n=stoi(s);
+    long long n,i=1,count=0;
+    n=stoll(s);
     // cout<<n<<" ";
     while (i<=n/2)
     {
@@ -28,7 +28,7 @@ bool isPrime(string s){
 }
 
 int main() {
-    int len,idx=0;
+    long long len,idx=0;
     cin>>len;
     string s;string arr[20];
     cin>>s;
@@ -51,7 +51,7 @@ int main() {
     for (int i = 0; i < 5; i++)
     {
         cout<<arr[i]<<" ";
-        int j=i+1;
+        long long j=i+1;
         sort(arr,arr+20);
         if(arr[j].find(arr[i])==1){
             arr[j]="0";
