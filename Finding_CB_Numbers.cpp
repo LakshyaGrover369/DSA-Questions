@@ -1,64 +1,43 @@
-#include<iostream>
-#include<algorithm>
-#include<string>
+#include<bits/stdc++.h>
 using namespace std;
-bool isPrime(string s){
-    long long n,i=1,count=0;
-    n=stoll(s);
-    // cout<<n<<" ";
-    while (i<=n/2)
-    {
-        
-        if(n%i==0){
-            count++;
-        } 
-         i++;
-    }
-    if (count>1)
-    {
-        // cout<<"notprime ";
-        return 0;
-    }    
-    else if(count==1)  
-    {
-        // cout<<"prime ";
-        return 1;
-    }    
-
+bool cbCheck(long long sub , int start , int end){
+    if(sub==0 || sub==1) return false;
+    int x[]={2,3,5,7,11,13,17,19,23,29};
+    for(int i = 0 ; i < 10 ; i++)    if(sub==x[i]) return true;
+    for(int i = 0 ; i < 10 ; i++)    if(sub%x[i]==0) return false;
+  return true;
+}
+bool isValid(bool *visited , int start , int end){
+   for(int i = start ; i < end ; i++)
+   {
+      if(visited[i]) return false;
+   }
+   return true;
 }
 
 int main() {
-    long long len,idx=0;
-    cin>>len;
-    string s;string arr[20];
+    int n;
+    cin>>n;
+    string s;
     cin>>s;
+    bool visited[100]={false};
+    int count=0;
 
-    for (int i = 0; i < len; i++)
+    for (int len = 1; len < s.size(); len++)
     {
-        string temp="";
-        for (int j = i; j < len; j++)
+        for (int pos = 0; pos < s.size(); pos++)
         {
-            temp+=(s[j]);
-            if(isPrime(temp)==1)
-            {
-                arr[idx]=temp;
-                // cout<<idx<<" "<<arr[idx]<<" \n";
-                idx++;
+            int end=len+pos;
+            string sub=s.substr(pos,len);
+            if(cbCheck(stoll(sub),pos,end) && isValid(visited,pos,end)){
+                count++;
+                for (int i = pos; i < end; i++)
+                {
+                    visited[i]=true;
+                }
             }
         }
-        cout<<endl;
     }
-    for (int i = 0; i < 5; i++)
-    {
-        cout<<arr[i]<<" ";
-        long long j=i+1;
-        sort(arr,arr+20);
-        if(arr[j].find(arr[i])==1){
-            arr[j]="0";
-        cout<<arr[i]<<" ";
-        }
-    }
-    
-
-	return 0;
+    cout<<count;
+	return 0;;
 }
