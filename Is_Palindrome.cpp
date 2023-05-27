@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <math.h>
 using namespace std;
 
 void arrayInput(int *arr, int n)
@@ -16,7 +18,7 @@ bool isPalindrome(int *arr, int n, int &idxStart, int &idxEnd)
         return false;
     idxStart++;
     idxEnd--;
-    isPalindrome(arr, n, idxStart, idxEnd);
+    return isPalindrome(arr, n, idxStart, idxEnd);
 }
 int main()
 {

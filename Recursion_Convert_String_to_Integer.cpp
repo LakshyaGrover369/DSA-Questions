@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <math.h>
 using namespace std;
 
 int string_to_intiger(string s , int &idx , int &ans){
@@ -9,7 +11,7 @@ int string_to_intiger(string s , int &idx , int &ans){
     ans*=10;
     ans+=(s[idx]-'0');
     idx++;
-    string_to_intiger(s,idx,ans);
+    return string_to_intiger(s,idx,ans);
 }
 
 int main()
